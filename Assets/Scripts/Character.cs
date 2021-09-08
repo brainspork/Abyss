@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -18,6 +16,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected float attackCoolDown;
     [SerializeField] protected float attackDistance;
     [SerializeField] protected int attackDamage;
+    [SerializeField] protected float attackDelay;
     [SerializeField] protected int maxCombo;
     
     [SerializeField] protected Transform attackPoint;
@@ -37,7 +36,7 @@ public class Character : MonoBehaviour
 
     protected bool grounded;
     
-    [Header("Health detials")]
+    [Header("Health Detials")]
     [SerializeField] protected int maxHealth;
     protected int currentHealth;
 
