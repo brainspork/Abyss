@@ -434,6 +434,8 @@ MonoBehaviour:
   attackCoolDown: 2
   attackDistance: 0.2
   attackDamage: 1
+  attackDelay: 0
+  attackStunTime: 0
   maxCombo: 1
   attackPoint: {fileID: 615423553}
   enemyLayer:
@@ -448,6 +450,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxHealth: 3
+  debug: 0
   lookDistance: 3
   playerGameObject: {fileID: 0}
 --- !u!1 &66737908
@@ -31782,7 +31785,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.027505, y: 1}
+    m_SensorSize: {x: 2.1104295, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -62975,6 +62978,8 @@ MonoBehaviour:
   attackCoolDown: 0.75
   attackDistance: 0.2
   attackDamage: 1
+  attackDelay: 0
+  attackStunTime: 1
   maxCombo: 3
   attackPoint: {fileID: 2069391058}
   enemyLayer:

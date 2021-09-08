@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected float direction;
 
     protected int currentDirection = 1;
-    protected bool stopMovement = false;
+    protected bool isAttacking = false;
 
     [Header("Attack Details")]
     [SerializeField] protected float attackTime;
@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected float attackDistance;
     [SerializeField] protected int attackDamage;
     [SerializeField] protected float attackDelay;
+    [SerializeField] protected float attackStunTime;
     [SerializeField] protected int maxCombo;
     
     [SerializeField] protected Transform attackPoint;
@@ -38,7 +39,10 @@ public class Character : MonoBehaviour
     
     [Header("Health Detials")]
     [SerializeField] protected int maxHealth;
+
     protected int currentHealth;
+    protected float stunTimer;
+    protected bool isStunned;
 
     protected Rigidbody2D rb2d;
     protected Animator anim;
@@ -52,6 +56,7 @@ public class Character : MonoBehaviour
         attackTimeTimer = 0;
         attackCoolDownTimer = 0;
 
+        stunTimer = 0;
         currentHealth = maxHealth;
     }
 
@@ -84,14 +89,26 @@ public class Character : MonoBehaviour
         if (attackTimeTimer > 0)
         {
             attackTimeTimer -= Time.deltaTime;
-            stopMovement = true;
+            isAttacking = true;
+        }
+
+        if (stunTimer > 0)
+        {
+            stunTimer -= Time.deltaTime;
+            isStunned = true;
         }
 
         // hide attack layer when animation is over
         if (attackTimeTimer <= 0)
         {
             anim.SetLayerWeight(2, 0);
-            stopMovement = false;
+            isAttacking = false;
+        }
+
+        if (stunTimer <= 0)
+        {
+            isStunned = false;
+            anim.ResetTrigger("t_hit");
         }
 
         // reset attack count and triggers when cool down is over
@@ -147,18 +164,29 @@ public class Character : MonoBehaviour
         foreach (var collider in enemyColliders)
         {
             var enemyCharacter = collider.GetComponent<Character>();
-            enemyCharacter.TakeDamage(attackDamage);
+            enemyCharacter.TakeDamage(attackDamage, attackStunTime);
         }
+    }
+
+    protected void TakeDamage(int damage, float stunTime)
+    {
+        if (!isStunned)
+        {
+            stunTimer = stunTime;
+        }
+
+        TakeDamage(damage);
     }
 
     protected void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        anim.SetTrigger("t_hit");
     }
 
     protected virtual void HandleMovement()
     {
-        if (!stopMovement)
+        if (!isAttacking && !isStunned)
         {
             Move();
 
@@ -170,7 +198,7 @@ public class Character : MonoBehaviour
 
     protected virtual void HandleAttack()
     {
-        if (attackCount < maxCombo)
+        if (attackCount < maxCombo && !isStunned)
         {
             Attack();
         }
