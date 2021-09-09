@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -40,6 +41,7 @@ public class Character : MonoBehaviour
     
     [Header("Health Detials")]
     [SerializeField] protected int maxHealth;
+    [SerializeField] protected Slider healthBar;
 
     protected int currentHealth;
     protected float stunTimer;
@@ -60,6 +62,11 @@ public class Character : MonoBehaviour
 
         stunTimer = 0;
         currentHealth = maxHealth;
+
+        if (healthBar)
+        {
+            healthBar.maxValue = maxHealth;
+        }
     }
 
     public virtual void Update()
@@ -129,6 +136,11 @@ public class Character : MonoBehaviour
             {
                 anim.ResetTrigger(trigger);
             }
+        }
+
+        if (healthBar)
+        {
+            healthBar.value = currentHealth;
         }
     }
 
