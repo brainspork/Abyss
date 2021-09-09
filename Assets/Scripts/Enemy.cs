@@ -35,7 +35,20 @@ public class Enemy : Character
 
             if (Mathf.Abs(distanceFromPlayer) < attackDistance || (debug && Input.GetButtonDown("Fire1")))
             {
-                HandleAttack();
+                if (attackDelayTimer <= 0)
+                {
+                    isAttacking = true;
+
+                    attackDelayTimer = attackDelay;
+                    anim.SetLayerWeight(2, 1);
+                    anim.SetTrigger("t_startAttackA");
+
+                    Invoke("HandleAttack", attackDelay);
+                }
+                else
+                {
+                    anim.ResetTrigger("t_startAttackA");
+                }
             }
 
             if (hasSeenPlayer)

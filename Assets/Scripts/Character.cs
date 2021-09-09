@@ -28,6 +28,7 @@ public class Character : MonoBehaviour
     protected int attackCount;
     protected float attackTimeTimer;
     protected float attackCoolDownTimer;
+    protected float attackDelayTimer;
 
     [Header("Jump Details")]
     [SerializeField] protected float jumpForce;
@@ -55,6 +56,7 @@ public class Character : MonoBehaviour
         attackCount = 0;
         attackTimeTimer = 0;
         attackCoolDownTimer = 0;
+        attackDelayTimer = 0;
 
         stunTimer = 0;
         currentHealth = maxHealth;
@@ -86,10 +88,19 @@ public class Character : MonoBehaviour
             attackCoolDownTimer -= Time.deltaTime;
         }
 
+        if (attackTimeTimer > 0 || attackDelayTimer > 0)
+        {
+            isAttacking = true;
+        }
+        else
+        {
+            anim.SetLayerWeight(2, 0);
+            isAttacking = false;
+        }
+
         if (attackTimeTimer > 0)
         {
             attackTimeTimer -= Time.deltaTime;
-            isAttacking = true;
         }
 
         if (stunTimer > 0)
@@ -98,17 +109,15 @@ public class Character : MonoBehaviour
             isStunned = true;
         }
 
-        // hide attack layer when animation is over
-        if (attackTimeTimer <= 0)
-        {
-            anim.SetLayerWeight(2, 0);
-            isAttacking = false;
-        }
-
         if (stunTimer <= 0)
         {
             isStunned = false;
             anim.ResetTrigger("t_hit");
+        }
+
+        if (attackDelayTimer > 0)
+        {
+            attackDelayTimer -= Time.deltaTime;
         }
 
         // reset attack count and triggers when cool down is over
@@ -198,8 +207,10 @@ public class Character : MonoBehaviour
 
     protected virtual void HandleAttack()
     {
+        // we can attack if character isn't stunned and hasn't exausted combo
         if (attackCount < maxCombo && !isStunned)
         {
+            attackDelayTimer = attackDelay;
             Attack();
         }
     }
