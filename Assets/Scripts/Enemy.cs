@@ -2,76 +2,29 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    [Header("Enemy AI")]
-    [SerializeField] private bool debug;
-    [SerializeField] private float lookDistance;
-    [SerializeField] private GameObject playerGameObject;
+    [Header("Drop Details")]
+    [SerializeField] protected GameObject dropItem;
 
-    private bool hasSeenPlayer = false;
+    protected bool hasDropped;
 
     public override void Start()
     {
         base.Start();
 
-        if (playerGameObject == null)
-        {
-            playerGameObject = GameObject.Find("Player");
-        }
-    }
-
-    public override void Update()
-    {
-        base.Update();
-
-        if (playerGameObject != null && !isDead)
-        {
-            var playerPosition = playerGameObject.transform.position;
-            var distanceFromPlayer = Vector2.Distance(playerPosition, attackPoint.position);
-
-            if (distanceFromPlayer < lookDistance)
-            {
-                hasSeenPlayer = true;
-            }
-
-            if (Mathf.Abs(distanceFromPlayer) < attackDistance || (debug && Input.GetButtonDown("Fire1")))
-            {
-                if (attackDelayTimer <= 0)
-                {
-                    isAttacking = true;
-
-                    attackDelayTimer = attackDelay;
-                    anim.SetLayerWeight(2, 1);
-                    anim.SetTrigger("t_startAttackA");
-
-                    Invoke("HandleAttack", attackDelay);
-                }
-                else
-                {
-                    anim.ResetTrigger("t_startAttackA");
-                }
-            }
-
-            if (hasSeenPlayer)
-            {
-                direction = transform.position.x > playerPosition.x ? -1 : 1;
-            }
-        }
-        else
-        {
-            direction = 0;
-        }
+        hasDropped = false;
     }
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        
-        if (isDead)
-        {
-            anim.SetLayerWeight(3, 1);
-            anim.SetBool("b_isDead", true);
 
-            gameObject.layer = 9;
+        // if enemy has an item to drop, has died and hasn't dropped yet, drop item
+        if (dropItem && isDead && !hasDropped)
+        {
+            hasDropped = true;
+
+            // TODO: maybe drop position should be provided so bosses can drop on map somewhere?
+            Instantiate(dropItem, transform.position, transform.rotation);
         }
     }
 }

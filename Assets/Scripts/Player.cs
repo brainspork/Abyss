@@ -23,4 +23,10 @@ public class Player : Character
             HandleJump();
         }
     }
+
+    public void Heal(int amount)
+    {
+        var newHealth = currentHealth + amount;
+        currentHealth = newHealth > maxHealth ? maxHealth : newHealth;
+    }
 }

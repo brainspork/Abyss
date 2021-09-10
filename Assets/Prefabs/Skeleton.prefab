@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5811502027545580230}
   - component: {fileID: 5811502027545580228}
   - component: {fileID: 1362418587709661349}
-  - component: {fileID: 5811502027545580253}
+  - component: {fileID: 3541642899151425780}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -178,7 +178,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.024288662, y: -0.041995138}
   m_Size: {x: 0.13612832, y: 0.58717483}
   m_Direction: 0
---- !u!114 &5811502027545580253
+--- !u!114 &3541642899151425780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,16 +187,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5811502027545580226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61e0786617be7c4cbc3ffafdd4918aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f7a5b661da07a84386e470271de8c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
   direction: 0
   attackTime: 1.1
   attackCoolDown: 2
-  attackDistance: 0.2
+  attackDistance: 0.26
   attackDamage: 1
-  attackDelay: 0.75
+  attackDelay: 0.5
   attackStunTime: 0
   maxCombo: 1
   attackPoint: {fileID: 5811502027030217064}
@@ -214,7 +214,10 @@ MonoBehaviour:
   maxHealth: 3
   healthBar: {fileID: 0}
   debug: 0
-  lookDistance: 3
+  lookDistance: 0
+  playerGameObject: {fileID: 0}
+  debug: 0
+  lookDistance: 2.5
   playerGameObject: {fileID: 0}
 --- !u!1 &5811502028455539714
 GameObject:
