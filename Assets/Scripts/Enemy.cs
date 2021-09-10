@@ -23,7 +23,7 @@ public class Enemy : Character
     {
         base.Update();
 
-        if (playerGameObject != null)
+        if (playerGameObject != null && !isDead)
         {
             var playerPosition = playerGameObject.transform.position;
             var distanceFromPlayer = Vector2.Distance(playerPosition, attackPoint.position);
@@ -59,6 +59,19 @@ public class Enemy : Character
         else
         {
             direction = 0;
+        }
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        
+        if (isDead)
+        {
+            anim.SetLayerWeight(3, 1);
+            anim.SetBool("b_isDead", true);
+
+            gameObject.layer = 9;
         }
     }
 }

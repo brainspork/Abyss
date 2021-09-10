@@ -46,6 +46,7 @@ public class Character : MonoBehaviour
     protected int currentHealth;
     protected float stunTimer;
     protected bool isStunned;
+    protected bool isDead;
 
     protected Rigidbody2D rb2d;
     protected Animator anim;
@@ -62,6 +63,7 @@ public class Character : MonoBehaviour
 
         stunTimer = 0;
         currentHealth = maxHealth;
+        isDead = false;
 
         if (healthBar)
         {
@@ -149,7 +151,7 @@ public class Character : MonoBehaviour
         // destroy character when health drops below zero
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            isDead = true;
         }
 
         HandleMovement();
