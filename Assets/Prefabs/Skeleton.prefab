@@ -212,6 +212,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxHealth: 3
+  healthBar: {fileID: 0}
   debug: 0
   lookDistance: 3
   playerGameObject: {fileID: 0}
