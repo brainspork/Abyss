@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy : Character
 {
     [Header("Drop Details")]
-    [SerializeField] protected GameObject dropItem;
+    [SerializeField] protected Drop dropItem;
 
     protected bool hasDropped;
 
@@ -23,8 +23,11 @@ public class Enemy : Character
         {
             hasDropped = true;
 
-            // TODO: maybe drop position should be provided so bosses can drop on map somewhere?
-            Instantiate(dropItem, transform.position, transform.rotation);
+            if (Random.Range(0f, 1f) <= dropItem.dropChance)
+            {
+                // TODO: maybe drop position should be provided so bosses can drop on map somewhere?
+                Instantiate(dropItem, transform.position, transform.rotation);
+            }
         }
     }
 }

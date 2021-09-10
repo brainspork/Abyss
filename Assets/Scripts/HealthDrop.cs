@@ -27,6 +27,7 @@ public class HealthDrop : Drop
 
     public override void DestroyDrop()
     {
+        gameObject.layer = 9;
         anim.SetTrigger("t_pickup");
 
         Invoke("Destroy", 1);

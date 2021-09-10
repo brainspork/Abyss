@@ -2,6 +2,8 @@ using UnityEngine;
 
 public abstract class Drop : MonoBehaviour
 {
+    public float dropChance;
+
     public abstract void PickupDrop(Player player);
 
     public virtual void DestroyDrop()
