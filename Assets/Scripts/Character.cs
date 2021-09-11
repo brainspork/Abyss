@@ -191,7 +191,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    protected void TakeDamage(int damage, float stunTime)
+    public void TakeDamage(int damage, float stunTime)
     {
         if (!isStunned)
         {
@@ -201,7 +201,7 @@ public class Character : MonoBehaviour
         TakeDamage(damage);
     }
 
-    protected void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         currentHealth -= damage;
         anim.SetTrigger("t_hit");

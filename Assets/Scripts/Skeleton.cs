@@ -76,4 +76,10 @@ public class Skeleton : Enemy
             gameObject.layer = 9;
         }
     }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        hasSeenPlayer = true;
+    }
 }
