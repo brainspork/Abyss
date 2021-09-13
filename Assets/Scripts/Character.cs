@@ -42,6 +42,7 @@ public class Character : MonoBehaviour
     [Header("Health Detials")]
     [SerializeField] protected int maxHealth;
     [SerializeField] protected Slider healthBar;
+    [SerializeField] protected GameObject bloodExplosionPrefab;
 
     internal bool isDead;
 
@@ -154,9 +155,13 @@ public class Character : MonoBehaviour
     public virtual void FixedUpdate()
     {
         // destroy character when health drops below zero
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDead)
         {
             isDead = true;
+            if (bloodExplosionPrefab)
+            {
+                Instantiate(bloodExplosionPrefab, transform.position, transform.rotation);
+            }
         }
 
         HandleMovement();
