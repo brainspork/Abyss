@@ -105,4 +105,10 @@ public class Player : Character
         var newHealth = currentHealth + amount;
         currentHealth = newHealth > maxHealth ? maxHealth : newHealth;
     }
+
+    public void RechargeMana(int amount)
+    {
+        var newMana = currentMana + amount;
+        currentMana = newMana > maxMana ? maxMana : newMana;
+    }
 }

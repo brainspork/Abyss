@@ -63274,7 +63274,7 @@ PrefabInstance:
     - target: {fileID: 3541642899151425780, guid: 6ad3eb805448ca14a90ccd43be39a977, type: 3}
       propertyPath: dropItem
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6533916541469055426, guid: 8600216b02a3bdf42bae7f032e6bd27a, type: 3}
     - target: {fileID: 3541642899151425780, guid: 6ad3eb805448ca14a90ccd43be39a977, type: 3}
       propertyPath: lookDistance
       value: 2.5
