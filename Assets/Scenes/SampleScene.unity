@@ -32349,6 +32349,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376046690}
   m_CullTransparentMesh: 1
+--- !u!1 &1557408042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1557408043}
+  m_Layer: 5
+  m_Name: Mana
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1557408043
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557408042}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1897732936}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 110, y: -65}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1656305883
 GameObject:
   m_ObjectHideFlags: 0
@@ -32983,6 +33019,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1736982740}
+  - {fileID: 1557408043}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63065,7 +63102,11 @@ MonoBehaviour:
     m_Bits: 64
   maxHealth: 3
   healthBar: {fileID: 1736982741}
+  maxMana: 2
   projectile: {fileID: 4094220875703332090, guid: 554ba572503710e4e98a057ec4cf5937, type: 3}
+  manaUiBox: {fileID: 1557408042}
+  filledManaBubble: {fileID: 21300000, guid: 227ca22e8f6baef419fad7a1bc304e8e, type: 3}
+  emptyManaBubble: {fileID: 21300000, guid: c7581e7e427f95a428b382469d9f8988, type: 3}
 --- !u!50 &1975356503
 Rigidbody2D:
   serializedVersion: 4
@@ -63295,6 +63336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1897732936}
     m_Modifications:
+    - target: {fileID: 8553073931172884266, guid: 8b130e9041d78c34b8c933c8234d31a5, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8553073931172884267, guid: 8b130e9041d78c34b8c933c8234d31a5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
