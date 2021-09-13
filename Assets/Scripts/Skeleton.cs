@@ -25,7 +25,7 @@ public class Skeleton : Enemy
     {
         base.Update();
 
-        if (playerGameObject != null && !isDead)
+        if (playerGameObject != null && !isDead && gm.gameState == GameState.Playing)
         {
             var playerPosition = playerGameObject.transform.position;
             var distanceFromPlayer = Vector2.Distance(playerPosition, attackPoint.position);

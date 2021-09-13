@@ -12,13 +12,9 @@ public class Player : Character
 
     private int currentMana;
 
-    private GameManager gm;
-
     public override void Start()
     {
         base.Start();
-
-        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
         currentMana = maxMana;
         
@@ -47,6 +43,12 @@ public class Player : Character
             {
                 HandleJump();
             }
+        }
+
+        if (isDead)
+        {
+            anim.SetLayerWeight(3, 1);
+            anim.SetBool("b_isDead", true);
         }
     }
 

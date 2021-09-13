@@ -49,6 +49,8 @@ public class Character : MonoBehaviour
     protected float stunTimer;
     protected bool isStunned;
 
+    protected GameManager gm;
+
     protected Rigidbody2D rb2d;
     protected Animator anim;
 
@@ -56,6 +58,8 @@ public class Character : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
         attackCount = 0;
         attackTimeTimer = 0;
