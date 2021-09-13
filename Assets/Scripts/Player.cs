@@ -12,9 +12,13 @@ public class Player : Character
 
     private int currentMana;
 
+    private GameManager gm;
+
     public override void Start()
     {
         base.Start();
+
+        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
         currentMana = maxMana;
         
@@ -23,23 +27,26 @@ public class Player : Character
 
     public override void Update()
     {
-        base.Update();
-
-        direction = Input.GetAxis("Horizontal");
-
-        if (Input.GetButtonDown("Fire1"))
+        if (gm.gameState == GameState.Playing)
         {
-            HandleAttack();
-        }
+            base.Update();
 
-        if (Input.GetButtonDown("Fire2"))
-        {
-            FireProjectile();
-        }
+            direction = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            HandleJump();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                HandleAttack();
+            }
+
+            if (Input.GetButtonDown("Fire2"))
+            {
+                FireProjectile();
+            }
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                HandleJump();
+            }
         }
     }
 

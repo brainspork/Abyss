@@ -43,10 +43,11 @@ public class Character : MonoBehaviour
     [SerializeField] protected int maxHealth;
     [SerializeField] protected Slider healthBar;
 
+    internal bool isDead;
+
     protected int currentHealth;
     protected float stunTimer;
     protected bool isStunned;
-    protected bool isDead;
 
     protected Rigidbody2D rb2d;
     protected Animator anim;
