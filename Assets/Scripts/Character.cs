@@ -157,6 +157,14 @@ public class Character : MonoBehaviour
         HandleMovement();
     }
 
+    public virtual void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.layer == 12)
+        {
+            currentHealth = 0;
+        }
+    }
+
     protected void Move()
     {
         rb2d.velocity = new Vector2(direction * speed, rb2d.velocity.y);

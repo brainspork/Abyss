@@ -110,5 +110,7 @@ public class Player : Character
     {
         var newMana = currentMana + amount;
         currentMana = newMana > maxMana ? maxMana : newMana;
+
+        UpdateManaUI();
     }
 }

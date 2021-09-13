@@ -3,15 +3,17 @@ using UnityEngine;
 public class Enemy : Character
 {
     [Header("Drop Details")]
-    [SerializeField] protected Drop dropItem;
+    [SerializeField] protected Drop[] droppableItems;
 
     protected bool hasDropped;
+    protected Drop dropItem;
 
     public override void Start()
     {
         base.Start();
 
         hasDropped = false;
+        dropItem = droppableItems[Random.Range(0, droppableItems.Length)];
     }
 
     public override void FixedUpdate()

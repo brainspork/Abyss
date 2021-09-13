@@ -213,7 +213,9 @@ MonoBehaviour:
     m_Bits: 64
   maxHealth: 3
   healthBar: {fileID: 0}
-  dropItem: {fileID: 1163557222101315439, guid: 89f95b375498d164887c9a325233a194, type: 3}
+  droppableItems:
+  - {fileID: 1163557222101315439, guid: 89f95b375498d164887c9a325233a194, type: 3}
+  - {fileID: 6533916541469055426, guid: 8600216b02a3bdf42bae7f032e6bd27a, type: 3}
   debug: 0
   lookDistance: 2.5
   playerGameObject: {fileID: 0}
